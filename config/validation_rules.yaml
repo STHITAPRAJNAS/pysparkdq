@@ -1,0 +1,15 @@
+tables:
+  - name: "sales_table"
+    rules:
+      - rule_id: "rule1"
+        sql_expression: "SELECT MAX(revenue) as max_revenue FROM sales_table WHERE order_date > '{start_date}'"
+        expected_result:
+          column: "max_revenue"
+          operator: ">"
+          value: 10000
+      - rule_id: "rule2"
+        sql_expression: "SELECT AVG(quantity) as avg_quantity FROM sales_table WHERE product_category IN {categories}"
+        expected_result:
+          column: "avg_quantity"
+          operator: "between"
+          value: [5, 100]
